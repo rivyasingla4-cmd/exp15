@@ -1,3 +1,5 @@
+# rivya singla 
+# 25070123091 
 ## Aim
 
 To perform data preprocessing using Python by applying normalization techniques such as Min Max normalization Z score normalization and Decimal scaling and also applying categorical data encoding methods like Label Encoding One Hot Encoding and Dummy Encoding in order to prepare the dataset for machine learning models
