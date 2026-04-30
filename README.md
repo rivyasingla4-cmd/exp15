@@ -4,46 +4,67 @@
 
 To perform data preprocessing using Python by applying normalization techniques such as Min Max normalization Z score normalization and Decimal scaling and also applying categorical data encoding methods like Label Encoding One Hot Encoding and Dummy Encoding in order to prepare the dataset for machine learning models
 
-## Theory
+## THEORY
 
-Data preprocessing is an important step in data analysis and machine learning It involves transforming raw data into a clean structured and usable format The main tasks in preprocessing include normalization of numerical data and encoding of categorical data
+Data Normalization
+Data normalization is the process of scaling numerical data into a specific range or distribution so that different features contribute equally to analysis. It is essential when dealing with datasets having varying scales.
 
-Normalization is used to scale numerical values so that they fall within a specific range or follow a standard distribution Encoding is used to convert categorical data into numerical form so that machine learning algorithms can understand and process it
+a) Min-Max Normalization Min-Max normalization transforms data into a fixed range between 0 and 1 .
 
-Min Max normalization scales the data into a fixed range usually between zero and one It is calculated by subtracting the minimum value from each data point and dividing by the range of the data This method preserves the relationships between values
+In the experiment: Applied on the Price column individually Applied on multiple columns like Price, Units_Sold, Discount
 
-Z score normalization also known as standardization transforms data based on mean and standard deviation It centers the data around zero and scales it so that the standard deviation becomes one This method is useful when data contains outliers
+Functions used: df['Price'].min() df['Price'].max() Vectorized operations in Pandas
 
-Decimal scaling normalizes data by dividing each value by a power of ten This method is simple and is used when the data range is large
+Purpose: Scales all values proportionally Useful when the distribution is not Gaussian
 
-Label encoding is used to convert categorical values into numerical labels For example male can be converted to one and female to zero This method is simple but may introduce an unwanted order among categories
+b) Z-Score Normalization (Standardization)
 
-One hot encoding creates separate columns for each category and assigns binary values This method avoids any ordinal relationship between categories and is widely used for nominal data
+Z-score normalization converts data into a distribution with mean = 0 and standard deviation = 1:
 
-Dummy encoding is similar to one hot encoding but it removes one column to avoid redundancy and multicollinearity It is mainly used in regression models
+In the experiment: Applied to Units_Sold Also applied to multiple columns
 
-## Explanation of Commands
+Functions used: df['Units_Sold'].mean() df['Units_Sold'].std()
 
-The pandas library is used for data manipulation and analysis while numpy is used for numerical operations
+Purpose: Handles outliers effectively Suitable for statistical analysis and ML models
 
-The DataFrame function is used to create a table from a dictionary structure where data is organized into rows and columns
+c) Decimal Scaling
 
-Min Max normalization is performed by subtracting the minimum value of a column and dividing by the difference between maximum and minimum values
+Decimal scaling normalizes data by dividing values by powers of 10:
 
-Multiple columns can be normalized at once by selecting the required columns and applying the same formula
+Where j is chosen such that the maximum value becomes less than 1.
 
-Z score normalization is performed by subtracting the mean of the column and dividing by its standard deviation
+In the experiment: Price divided by 10000 Units_Sold divided by 100
 
-Decimal scaling is done by dividing the values of a column by a suitable power of ten to reduce their magnitude
+Purpose: Simple normalization method Based on magnitude of values
 
-Label encoding is implemented using LabelEncoder from sklearn preprocessing which converts categorical text data into numerical form
+Data Type Conversion Categorical data must be converted into numerical form for machine learning algorithms.
+a) Label Encoding Label encoding assigns integer values to categories.
 
-One hot encoding is performed using get dummies function in pandas which creates new columns for each category in a column
+Example: Male → 1 Female → 0
 
-Multiple columns can be encoded at once by passing a list of column names to the get dummies function
+Functions used: LabelEncoder() fit_transform()
 
-Dummy encoding is achieved by using get dummies with drop first set to true which removes one category to avoid redundancy
+Characteristics: Assigns values based on alphabetical order Can be reversed Suitable for ordinal data
 
-## Conclusion
+b) One-Hot Encoding One-hot encoding creates binary columns for each category.
 
-In this experiment data preprocessing techniques were successfully applied Numerical data was normalized using Min Max Z score and Decimal scaling methods to bring consistency in data values Categorical data was converted into numerical form using Label Encoding One Hot Encoding and Dummy Encoding These techniques help improve the performance of machine learning models by making the dataset clean structured and suitable for analysis
+Example: Payment methods → COD, Credit Card, Debit Card, UPI Each becomes a separate column with 0 or 1
+
+Functions used: pd.get_dummies()
+
+Characteristics: Avoids ordinal relationship Increases dimensionality
+
+c) Dummy Encoding (Drop First) Dummy encoding is a reduced version of one-hot encoding where one column is dropped to avoid redundancy.
+
+Functions used: pd.get_dummies(drop_first=True)
+
+Purpose: Prevents dummy variable trap Reduces multicollinearity
+
+Working with External Datasets The experiment also applies normalization and encoding on real datasets: Amazon Dataset Min-Max normalization on Price, Units_Sold, Rating, Reviews Z-score normalization on multiple columns Decimal scaling on Price and Reviews Student Dataset Label encoding for Placement_Status One-hot encoding for Department Dummy encoding for reduced feature set
+
+Libraries Used Pandas (pd) → Data manipulation and DataFrame operations NumPy (np) → Numerical computations Scikit-learn (LabelEncoder) → Encoding categorical data
+
+## CONCLUSION
+In this experiment, various techniques of data normalization and data type conversion were successfully implemented and analyzed using Python. Min-Max normalization scaled data within a fixed range, making it easier to compare different features. Z-score normalization standardized the data and proved effective in handling outliers by centering values around the mean. Decimal scaling provided a simple approach to reduce large numerical values based on their magnitude. For categorical data, label encoding converted text data into numerical form but introduced ordinal relationships. One-hot encoding resolved this issue by creating independent binary columns, while dummy encoding further optimized the dataset by reducing redundancy and avoiding multicollinearity. The use of functions such as min(), max(), mean(), std(), fit_transform(), and pd.get_dummies() demonstrated how Python libraries simplify complex data preprocessing tasks. Overall, the experiment highlighted the importance of preprocessing in data analysis. Proper normalization and encoding ensure that datasets are clean, consistent, and suitable for statistical analysis and machine learning models, ultimately improving accuracy and performance.
+
+
